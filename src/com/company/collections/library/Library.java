@@ -90,6 +90,11 @@ public class Library {
         }
     }
 
+    /**
+     * This method print all literature for years param.
+     *
+     * @param years - number of year for print literature
+     */
     public void printYearLiterature(int years) {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(new Date(System.currentTimeMillis()));
