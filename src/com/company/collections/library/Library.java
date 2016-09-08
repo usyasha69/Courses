@@ -10,8 +10,6 @@ public class Library {
     private ArrayList<Journal> journals;
     private ArrayList<Yearbook> yearbooks;
 
-    private LiteratureModel literatureModel;
-
     public Library(ArrayList<Book> books, ArrayList<Journal> journals, ArrayList<Yearbook> yearbooks) {
         this.books = books;
         this.journals = journals;
@@ -19,8 +17,6 @@ public class Library {
     }
 
     public Library(LiteratureModel literatureModel) {
-        this.literatureModel = literatureModel;
-
         books = literatureModel.getBooks();
         journals = literatureModel.getJournals();
         yearbooks = literatureModel.getYearbooks();

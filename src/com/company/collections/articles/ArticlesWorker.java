@@ -18,14 +18,11 @@ public class ArticlesWorker {
 
         //found equal articles and print
         System.out.println("Equal articles in first and second list: ");
-        LinkedHashSet<Article> equalArticles = compareArticles(firstList, secondList);
-        printArticle(equalArticles);
+        printArticle(compareArticles(firstList, secondList));
 
         //found article with equal header and publishing date and print
         System.out.println("\n\nArticles with equal header and publishing date in first and second list: ");
-        LinkedHashSet<Article> equalHeaderAndPublishingDateArticles = foundEqualHeaderAndPublishingDateArticles(
-                firstList, secondList);
-        printArticle(equalHeaderAndPublishingDateArticles);
+        printArticle(foundEqualHeaderAndPublishingDateArticles(firstList, secondList));
     }
 
     /**

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class ArticlesPlaceholder {
 
+    /**
+     * This method create article list model with two lists.
+     *
+     * @return - article list model
+     */
     public ArticleListModel fillingListArticles() {
         //result
         ArticleListModel articleListModel = new ArticleListModel();
@@ -18,42 +23,40 @@ public class ArticlesPlaceholder {
         ArrayList<String> thirdKeywords = new ArrayList<>();
         ArrayList<String> fourthKeywords = new ArrayList<>();
 
-        //filling lists with keywords
+        //filling first lists with keywords
         firstKeywords.add("one");
         firstKeywords.add("two");
         firstKeywords.add("three");
+
+        //filling second lists with keywords
         secondKeywords.add("four");
         secondKeywords.add("five");
         secondKeywords.add("six");
+
+        //filling third lists with keywords
         thirdKeywords.add("seven");
         thirdKeywords.add("eight");
         thirdKeywords.add("nine");
+
+        //filling fourth lists with keywords
         fourthKeywords.add("ten");
         fourthKeywords.add("eleven");
         fourthKeywords.add("twelve");
 
-        //articles
-        Article firstArticle = new Article("firstHeader", "21-02-2010", firstKeywords);
-        Article secondArticle = new Article("secondHeader", "18-10-2016", secondKeywords);
-        Article thirdArticle = new Article("thirdHeader", "14-12-2001", thirdKeywords);
-        Article fourthArticle = new Article("fourthHeader", "22-09-2014", fourthKeywords);
-        Article fivesArticle = new Article("firstHeader", "21-02-2010", secondKeywords);
-        Article sixthArticle = new Article("secondHeader", "18-10-2016", firstKeywords);
-        Article seventhArticle = new Article("thirdHeader", "14-12-2001", fourthKeywords);
-        Article eighthArticle = new Article("fourthHeader", "22-09-2014", thirdKeywords);
+        //filling first list articles
+        firstList.add(new Article("firstHeader", "21-02-2010", firstKeywords));
+        firstList.add(new Article("secondHeader", "18-10-2016", secondKeywords));
+        firstList.add(new Article("thirdHeader", "14-12-2001", thirdKeywords));
+        firstList.add(new Article("secondHeader", "18-10-2016", firstKeywords));
+        firstList.add(new Article("thirdHeader", "14-12-2001", fourthKeywords));
+        firstList.add(new Article("fourthHeader", "22-09-2014", thirdKeywords));
 
-        //filling lists articles
-        firstList.add(firstArticle);
-        firstList.add(secondArticle);
-        firstList.add(thirdArticle);
-        firstList.add(sixthArticle);
-        firstList.add(seventhArticle);
-        firstList.add(eighthArticle);
-        secondList.add(firstArticle);
-        secondList.add(fourthArticle);
-        secondList.add(fivesArticle);
-        secondList.add(secondArticle);
-        secondList.add(thirdArticle);
+        //filling second list articles
+        secondList.add(new Article("firstHeader", "21-02-2010", firstKeywords));
+        secondList.add(new Article("fourthHeader", "22-09-2014", fourthKeywords));
+        secondList.add(new Article("firstHeader", "21-02-2010", secondKeywords));
+        secondList.add(new Article("secondHeader", "18-10-2016", secondKeywords));
+        secondList.add(new Article("thirdHeader", "14-12-2001", thirdKeywords));
 
         //set lists in model
         articleListModel.setFirstList(firstList);
