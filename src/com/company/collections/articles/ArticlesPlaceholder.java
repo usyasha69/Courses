@@ -33,14 +33,14 @@ public class ArticlesPlaceholder {
         fourthKeywords.add("twelve");
 
         //articles
-        Article firstArticle = new Article("firstHeader", "firstDate", firstKeywords);
-        Article secondArticle = new Article("secondHeader", "secondDate", secondKeywords);
-        Article thirdArticle = new Article("thirdHeader", "thirdDate", thirdKeywords);
-        Article fourthArticle = new Article("fourthHeader", "fourthDate", fourthKeywords);
-        Article fivesArticle = new Article("firstHeader", "firstDate", secondKeywords);
-        Article sixthArticle = new Article("secondHeader", "secondDate", firstKeywords);
-        Article seventhArticle = new Article("thirdHeader", "thirdDate", fourthKeywords);
-        Article eighthArticle = new Article("fourthHeader", "fourthDate", thirdKeywords);
+        Article firstArticle = new Article("firstHeader", "21-02-2010", firstKeywords);
+        Article secondArticle = new Article("secondHeader", "18-10-2016", secondKeywords);
+        Article thirdArticle = new Article("thirdHeader", "14-12-2001", thirdKeywords);
+        Article fourthArticle = new Article("fourthHeader", "22-09-2014", fourthKeywords);
+        Article fivesArticle = new Article("firstHeader", "21-02-2010", secondKeywords);
+        Article sixthArticle = new Article("secondHeader", "18-10-2016", firstKeywords);
+        Article seventhArticle = new Article("thirdHeader", "14-12-2001", fourthKeywords);
+        Article eighthArticle = new Article("fourthHeader", "22-09-2014", thirdKeywords);
 
         //filling lists articles
         firstList.add(firstArticle);
