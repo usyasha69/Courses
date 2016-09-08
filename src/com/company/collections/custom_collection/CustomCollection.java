@@ -1,124 +1,153 @@
 package com.company.collections.custom_collection;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+public class CustomCollection<E> implements com.company.collections.custom_collection.List<E> {
 
-public class CustomCollection<E> implements List<Object> {
+    private Object[] data;
+    private int size;
+
+    public CustomCollection() {
+        this.data = new Object[16];
+    }
+
+    public CustomCollection(int initialCapacity) {
+
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Illegal capacity: " + initialCapacity);
+        }
+
+        this.data = new Object[initialCapacity];
+
+        this.size = initialCapacity;
+    }
 
     @Override
-    public int size() {
-        return 0;
+    public boolean add(E element) {
+        int freeElementIndex = 0;
+        boolean result = false;
+
+        if (data[data.length - 1] == null) {
+            for (int i = 0; i < data.length; i++) {
+                if (data[i] == null) {
+                    freeElementIndex = i;
+                    break;
+                }
+            }
+            data[freeElementIndex] = element;
+            size = freeElementIndex + 1;
+            result = true;
+        } else {
+            Object[] newData = new Object[data.length + 1];
+
+            System.arraycopy(data, 0, newData, 0, data.length);
+
+            newData[newData.length - 1] = element;
+
+            data = newData;
+            size = data.length;
+            result = true;
+        }
+
+        return result;
+    }
+
+    @Override
+    public void add(int index, E element) {
+        Object[] newData = new Object[data.length + 1];
+
+        for (int i = 0; i < index; i++) {
+            newData[i] = data;
+        }
+
+        newData[index] = element;
+
+        for (int i = index + 1; i <= data.length; i++) {
+            newData[i] = data[i - 1];
+        }
+
+        data = newData;
+        size = data.length;
+    }
+
+    @Override
+    public E get(int index) {
+        if (index >= 0 && index < size) {
+            return (E) data[index];
+        } else {
+            throw new ArrayIndexOutOfBoundsException("Output abroad collection!");
+        }
+    }
+
+    @Override
+    public E remove(int index) {
+        //result
+        E element = (E) data[index];
+
+        //size of collection
+        int dataLength = 0;
+
+        //return if size of collection equal zero
+        if (size == 0) {
+            return element;
+        }
+
+        //calculate size of collection
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] != null) {
+                dataLength++;
+            }
+        }
+
+        //throw new exception if index of remove more size of collection
+        if (index >= dataLength) {
+            throw new ArrayIndexOutOfBoundsException("Output the bounds of collection");
+        }
+
+        //if index of remove equal zero
+        if (index == 0 && dataLength != 0) {
+            Object[] newData = new Object[dataLength - 1];
+
+            for (int i = 0; i < dataLength; i++) {
+                if (i != dataLength - 1) {
+                    newData[i] = data[i + 1];
+                }
+            }
+
+            data = newData;
+            size = newData.length;
+
+            return element;
+        }
+
+        //if index of remove not equal zero and less size of collection
+        if (index > 0 && index < dataLength) {
+            Object[] newData = new Object[dataLength - 1];
+
+            System.arraycopy(data, 0, newData, 0, index);
+            System.arraycopy(data, index, newData, index - 1, dataLength - index);
+
+            data = newData;
+            size = newData.length;
+        }
+
+        return element;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
-    public boolean contains(Object o) {
-        return false;
-    }
-
-    @Override
-    public Iterator<Object> iterator() {
-        return null;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return null;
-    }
-
-    @Override
-    public boolean add(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
+    public int size() {
+        return size;
     }
 
     @Override
     public void clear() {
+        for (int i = 0; i < data.length; i++) {
+            data[i] = null;
+        }
 
-    }
-
-    @Override
-    public Object get(int index) {
-        return null;
-    }
-
-    @Override
-    public Object set(int index, Object element) {
-        return null;
-    }
-
-    @Override
-    public void add(int index, Object element) {
-
-    }
-
-    @Override
-    public Object remove(int index) {
-        return null;
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public ListIterator<Object> listIterator() {
-        return null;
-    }
-
-    @Override
-    public ListIterator<Object> listIterator(int index) {
-        return null;
-    }
-
-    @Override
-    public List<Object> subList(int fromIndex, int toIndex) {
-        return null;
+        size = 0;
     }
 }
