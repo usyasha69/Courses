@@ -1,5 +1,6 @@
 package com.company.collections.two_lists;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ListsWorker {
@@ -13,8 +14,8 @@ public class ListsWorker {
      */
     public void foundDifferentElement(int firstListSize, int secondListSize) {
         //create lists
-        LinkedList<Integer> firstList = new LinkedList<>();
-        LinkedList<Integer> secondList = new LinkedList<>();
+        ArrayList<Integer> firstList = new ArrayList<>();
+        ArrayList<Integer> secondList = new ArrayList<>();
 
         //filling first list
         for (int i = 0; i < firstListSize; i++) {
