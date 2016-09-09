@@ -39,9 +39,7 @@ public class ArticlesWorker {
         //found equal articles
         for (Article flArticle : firstList) {
             for (Article slArticle : secondList) {
-                if (flArticle.getHeader().equals(slArticle.getHeader())
-                        && flArticle.getPublishingDate().equals(slArticle.getPublishingDate())
-                        && flArticle.getKeywords().equals(slArticle.getKeywords())) {
+                if (flArticle.equals(slArticle)) {
                     equalArticles.add(flArticle);
                 }
             }

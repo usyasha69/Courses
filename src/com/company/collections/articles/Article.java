@@ -36,4 +36,18 @@ public class Article {
     public void setKeywords(ArrayList<String> keywords) {
         this.keywords = keywords;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Article article = (Article) o;
+
+        if (header != null ? !header.equals(article.header) : article.header != null) return false;
+        if (publishingDate != null ? !publishingDate.equals(article.publishingDate) : article.publishingDate != null)
+            return false;
+        return keywords != null ? keywords.equals(article.keywords) : article.keywords == null;
+
+    }
 }

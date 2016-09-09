@@ -23,7 +23,7 @@ public class CustomCollection<E> implements com.company.collections.custom_colle
      * @param initialCapacity - start capacity of custom collection
      */
     public CustomCollection(int initialCapacity) {
-        //if initial capacity less zero throw new excetion
+        //if initial capacity less zero throw new exception
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Illegal capacity: " + initialCapacity);
         }
