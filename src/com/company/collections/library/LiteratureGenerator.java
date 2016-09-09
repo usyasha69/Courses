@@ -2,20 +2,16 @@ package com.company.collections.library;
 
 import java.util.ArrayList;
 
-public class LibraryPlaceholder {
+public class LiteratureGenerator {
 
     /**
-     * This method create literature and return literature model.
+     * This method create books for library and return list with books.
      *
-     * @return - literature model
+     * @return - list with books
      */
-    public LiteratureModel fillingLibrary() {
-        //array lists for literature model
+    public static ArrayList<Book> generateBooks() {
+        //result
         ArrayList<Book> books = new ArrayList<>();
-        ArrayList<Journal> journals = new ArrayList<>();
-        ArrayList<Yearbook> yearbooks = new ArrayList<>();
-
-        LiteratureModel literatureModel = new LiteratureModel();
 
         //filling array list with books
         books.add(new Book("firstBook", "firstBookAuthor", "firstPublishingHouse", 1995));
@@ -24,12 +20,27 @@ public class LibraryPlaceholder {
         books.add(new Book("fourthBook", "fourthBookAuthor", "fourthPublishingHouse", 2014));
         books.add(new Book("fivesBook", "fivesBookAuthor", "fivesPublishingHouse", 2016));
 
+
+        return books;
+    }
+
+    public static ArrayList<Journal> generateJournals() {
+        //result
+        ArrayList<Journal> journals = new ArrayList<>();
+
         //filling array list with journals
         journals.add(new Journal("firstJournal", "firstSubjects", "14-08-2005"));
         journals.add(new Journal("secondJournal", "secondSubjects", "14-08-2013"));
         journals.add(new Journal("thirdJournal", "thirdSubjects", "14-08-2012"));
         journals.add(new Journal("fourthJournal", "fourthSubjects", "14-08-2016"));
         journals.add(new Journal("fivesJournal", "fivesSubjects", "14-08-2015"));
+
+        return journals;
+    }
+
+    public static ArrayList<Yearbook> generateYearbooks() {
+        //result
+        ArrayList<Yearbook> yearbooks = new ArrayList<>();
 
         //filling array list with yearbooks
         yearbooks.add(new Yearbook("firstYearbook", "firstSubjects", "firstPublishingHouse", 2005));
@@ -39,11 +50,6 @@ public class LibraryPlaceholder {
         yearbooks.add(new Yearbook("fivesYearbook", "fivesSubjects", "fivesPublishingHouse", 2016));
         yearbooks.add(new Yearbook("sixthYearbook", "sixthSubjects", "sixthPublishingHouse", 2016));
 
-        //filling literature model
-        literatureModel.setBooks(books);
-        literatureModel.setJournals(journals);
-        literatureModel.setYearbooks(yearbooks);
-
-        return literatureModel;
+        return yearbooks;
     }
 }

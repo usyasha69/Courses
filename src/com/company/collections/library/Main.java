@@ -8,7 +8,12 @@ package com.company.collections.library;
 public class Main {
     public static void main(String[] args) {
         //filling library literature
-        Library library = new Library(new LibraryPlaceholder().fillingLibrary());
+        Library library = new Library();
+
+        //generate literature for library
+        library.setBooks(LiteratureGenerator.generateBooks());
+        library.setJournals(LiteratureGenerator.generateJournals());
+        library.setYearbooks(LiteratureGenerator.generateYearbooks());
 
         //print all literature in library
         System.out.println("All literature in library:");
