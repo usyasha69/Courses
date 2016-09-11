@@ -28,7 +28,7 @@ public class ArticlesWorker {
 
         //found equal articles and print
         System.out.println("Equal articles in first and second list: ");
-        printArticle(compareArticles(firstList, secondList));
+        printArticle(foundEqualArticles(firstList, secondList));
 
         //found article with equal header and publishing date and print
         System.out.println("\n\nArticles with equal header and publishing date in first and second list: ");
@@ -42,7 +42,7 @@ public class ArticlesWorker {
      * @param secondList - second list with articles
      * @return - set with equal articles
      */
-    private static LinkedHashSet<Article> compareArticles(ArrayList<Article> firstList, ArrayList<Article> secondList) {
+    private static LinkedHashSet<Article> foundEqualArticles(ArrayList<Article> firstList, ArrayList<Article> secondList) {
         //result
         LinkedHashSet<Article> equalArticles = new LinkedHashSet<>();
 
@@ -74,8 +74,7 @@ public class ArticlesWorker {
         //found articles with equal header and publishing date
         for (Article flArticle : firstList) {
             for (Article slArticle : secondList) {
-                if (flArticle.getHeader().equals(slArticle.getHeader())
-                        && flArticle.getPublishingDate().equals(slArticle.getPublishingDate())) {
+                if (flArticle.equalsByHeaderAndDate(slArticle)) {
                     equalHeaderAndPublishingDateArticles.add(flArticle);
                 }
             }
@@ -92,11 +91,7 @@ public class ArticlesWorker {
     private static void printArticle(LinkedHashSet<Article> articles) {
         //print equal articles
         for (Article a : articles) {
-            System.out.print("\nHeader: " + a.getHeader() + " , publishing date: " + a.getPublishingDate()
-                    + ", keywords: ");
-            for (String s : a.getKeywords()) {
-                System.out.print(s + " ");
-            }
+            System.out.println(a.toString());
         }
     }
 }

@@ -32,11 +32,6 @@ public class SubscribersWorker {
         printSubscribers(subscribers);
     }
 
-    /**
-     * This method print subscribers.
-     *
-     * @param subscribers - list with subscribers
-     */
     private static void printSubscribers(ArrayList<Subscriber> subscribers) {
         for (Subscriber s : subscribers) {
             System.out.println(s.toString());

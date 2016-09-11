@@ -44,10 +44,33 @@ public class Article {
 
         Article article = (Article) o;
 
-        if (header != null ? !header.equals(article.header) : article.header != null) return false;
-        if (publishingDate != null ? !publishingDate.equals(article.publishingDate) : article.publishingDate != null)
-            return false;
-        return keywords != null ? keywords.equals(article.keywords) : article.keywords == null;
+        if (!header.equals(article.header)) return false;
+        if (!publishingDate.equals(article.publishingDate)) return false;
+        return keywords.equals(article.keywords);
 
+    }
+
+    /**
+     * This method compare 2 articles by header and publishing date.
+     *
+     * @param o - article
+     * @return - articles equal by header and publishing date.
+     */
+    public boolean equalsByHeaderAndDate(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Article article = (Article) o;
+
+        if (!header.equals(article.header)) return false;
+        return publishingDate.equals(article.publishingDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "header='" + header + '\'' +
+                ", publishingDate='" + publishingDate + '\'' +
+                ", keywords=" + keywords.toString() +
+                '}';
     }
 }

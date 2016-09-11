@@ -45,23 +45,23 @@ public class ListTester {
         addTime = System.currentTimeMillis();
         arrayList.add("25");
         System.out.println("Add time to end of array list: "
-                + (System.currentTimeMillis() - addTime));
+                + (System.currentTimeMillis() - addTime) + " ms");
         //operation add to start of array list
         addTime = System.currentTimeMillis();
         arrayList.add(0, "25");
         System.out.println("Add time to start of array list: "
-                + (System.currentTimeMillis() - addTime));
+                + (System.currentTimeMillis() - addTime) + " ms");
 
         //operation add to end of linked list
         addTime = System.currentTimeMillis();
         linkedList.add("25");
         System.out.println("Add time to end of linked list: "
-                + (System.currentTimeMillis() - addTime));
+                + (System.currentTimeMillis() - addTime) + " ms");
         //operation add to start of linked list
         addTime = System.currentTimeMillis();
         linkedList.add(0, "25");
         System.out.println("Add time to start of linked list: "
-                + (System.currentTimeMillis() - addTime));
+                + (System.currentTimeMillis() - addTime) + " ms");
 
         //result of add to start and end of lists
         System.out.println("Linked list win!");
@@ -73,23 +73,23 @@ public class ListTester {
         getTime = System.currentTimeMillis();
         arrayList.get(0);
         System.out.println("Get time to start of array list: "
-                + (System.currentTimeMillis() - getTime));
+                + (System.currentTimeMillis() - getTime) + " ms");
         //operation get to end of array list
         getTime = System.currentTimeMillis();
         arrayList.add(String.valueOf(arrayList.size() - 1));
         System.out.println("Get time to end of array list: "
-                + (System.currentTimeMillis() - getTime));
+                + (System.currentTimeMillis() - getTime) + " ms");
 
         //operation get to start of linked list
         getTime = System.currentTimeMillis();
         linkedList.getFirst();
         System.out.println("Get time to start of linked list: "
-                + (System.currentTimeMillis() - getTime));
+                + (System.currentTimeMillis() - getTime) + " ms");
         //operation get to end of linked list
         getTime = System.currentTimeMillis();
         linkedList.getLast();
         System.out.println("Get time to end of linked list: "
-                + (System.currentTimeMillis() - getTime));
+                + (System.currentTimeMillis() - getTime) + " ms");
 
         //result of add to start and end of lists
         System.out.println("Draw!");
@@ -101,23 +101,23 @@ public class ListTester {
         removeTime = System.currentTimeMillis();
         arrayList.remove(0);
         System.out.println("Remove time of start element in array list: "
-                + (System.currentTimeMillis() - removeTime));
+                + (System.currentTimeMillis() - removeTime) + " ms");
         //operation remove of end element of array list
         removeTime = System.currentTimeMillis();
         arrayList.remove(arrayList.size() - 1);
         System.out.println("Remove time of end element in array list: "
-                + (System.currentTimeMillis() - removeTime));
+                + (System.currentTimeMillis() - removeTime) + " ms");
 
         //operation remove of start element of linked list
         removeTime = System.currentTimeMillis();
         linkedList.remove(0);
         System.out.println("Remove time of start element in linked list: "
-                + (System.currentTimeMillis() - removeTime));
+                + (System.currentTimeMillis() - removeTime) + " ms");
         //operation remove of end element of linked list
         removeTime = System.currentTimeMillis();
         linkedList.remove(linkedList.size() - 1);
         System.out.println("Remove time of end element in linked list: "
-                + (System.currentTimeMillis() - removeTime));
+                + (System.currentTimeMillis() - removeTime) + " ms");
 
         //result remove of start and end element of lists
         System.out.println("Linked list win!");
@@ -135,7 +135,7 @@ public class ListTester {
             }
         }
         System.out.println("Remove time with iterator in array list: "
-                + (System.currentTimeMillis() - removeIteratorTime));
+                + (System.currentTimeMillis() - removeIteratorTime) + " ms");
 
         //operation remove with iterator of linked list
         removeIteratorTime = System.currentTimeMillis();
@@ -147,7 +147,7 @@ public class ListTester {
             }
         }
         System.out.println("Remove time with iterator in linked list: "
-                + (System.currentTimeMillis() - removeIteratorTime));
+                + (System.currentTimeMillis() - removeIteratorTime) + " ms");
 
         //result remove with iterator
         System.out.println("Draw!");
@@ -163,12 +163,12 @@ public class ListTester {
         //array list sort
         timeSort = System.currentTimeMillis();
         Collections.sort(arrayList);
-        System.out.println("Time of sort in array list: " + (System.currentTimeMillis() - timeSort));
+        System.out.println("Time of sort in array list: " + (System.currentTimeMillis() - timeSort) + " ms");
 
         //linked list sort
         timeSort = System.currentTimeMillis();
         Collections.sort(linkedList);
-        System.out.println("Time of sort in linked list: " + (System.currentTimeMillis() - timeSort));
+        System.out.println("Time of sort in linked list: " + (System.currentTimeMillis() - timeSort) + " ms");
 
         //result of sort
         System.out.println("Array list win!");

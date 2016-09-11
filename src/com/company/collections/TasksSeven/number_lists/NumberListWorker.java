@@ -57,7 +57,7 @@ public class NumberListWorker {
                     for (int k = 0; k < firstElementToCharArray.length; k++) {
                         for (int l = k; l < secondElementToCharArray.length; l++) {
                             if (firstElementToCharArray[k] == secondElementToCharArray[l]
-                                    && findForbiddenSymbols(firstElementToCharArray[k], forbiddenSymbols)) {
+                                    && !forbiddenSymbols.contains(firstElementToCharArray[k])) {
                                 differentDischargesCount++;
                                 break;
                             }
@@ -70,25 +70,6 @@ public class NumberListWorker {
         }
 
         printMatches(numberList, amountingDischargesList, differentDischargesList);
-    }
-
-    /**
-     * This method compare checked symbols with list with forbidden symbols.
-     *
-     * @param checkedSymbol    - checked symbols
-     * @param forbiddenSymbols - list with forbidden symbols
-     * @return - does it checked symbol is forbidden
-     */
-    private static boolean findForbiddenSymbols(char checkedSymbol, ArrayList<Character> forbiddenSymbols) {
-        boolean result = true;
-
-        for (Character forbiddenSymbol : forbiddenSymbols) {
-            if (forbiddenSymbol == checkedSymbol) {
-                result = false;
-            }
-        }
-
-        return result;
     }
 
     /**
@@ -106,8 +87,8 @@ public class NumberListWorker {
         Iterator<Integer> ddlIterator = differentDischargesList.iterator();
 
         for (int i = 0; i < numberList.size(); i++) {
-            for (int j = i; j < numberList.size(); j++) {
-                if (adlIterator.hasNext() && ddlIterator.hasNext() && i != j)
+            for (int j = i + 1; j < numberList.size(); j++) {
+                if (adlIterator.hasNext() && ddlIterator.hasNext())
                     System.out.println("First number = '" + numberList.get(i) + "' , second number = '"
                             + numberList.get(j) + "' ; amounting discharges: " + adlIterator.next()
                             + " , different discharges: " + ddlIterator.next());
