@@ -1,5 +1,7 @@
 package com.company.collections.TasksSix.cars;
 
+import java.text.DecimalFormat;
+
 public class Car {
     private String carModel;
     private double speed;
@@ -42,5 +44,15 @@ public class Car {
 
     public void setDriveTime(double driveTime) {
         this.driveTime = driveTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carModel='" + carModel + '\'' +
+                ", speed='" + speed +
+                " km/h', startingPosition='" + startingPosition +
+                " km;, driveTime='" + new DecimalFormat("#0.000").format(driveTime) +
+                " km'}";
     }
 }

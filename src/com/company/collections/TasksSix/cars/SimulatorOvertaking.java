@@ -1,92 +1,74 @@
 package com.company.collections.TasksSix.cars;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SimulatorOvertaking {
     /**
-     * List with cars.
+     * List with number of overtaking.
      */
-    private ArrayList<Car> cars;
+    private ArrayList<Integer> numbersOfOvertaking;
 
     /**
-     * Length of road.
-     */
-    private double roadLength;
-
-    /**
-     * First K overtaking.
-     */
-    private int firstOvertaking;
-
-    /**
-     * List with sorted cars.
-     */
-    private ArrayList<Car> sortedCars;
-
-    /**
-     * Overtaking list.
-     */
-    private ArrayList<Integer> overtaking;
-
-    /**
-     * Overtaking cars list.
+     * List with overtaking cars.
      */
     private ArrayList<Car> overtakingCars;
 
-    public SimulatorOvertaking(ArrayList<Car> cars, double roadLength, int firstOvertaking) {
-        this.cars = cars;
-        this.roadLength = roadLength;
-        this.firstOvertaking = firstOvertaking;
-    }
+    /**
+     * List with car who defeated overtaking cars.
+     */
+    private ArrayList<Car> whoWasDefeatedCarList;
 
     /**
-     * This method starting race.
+     * This method start the program.
+     *
+     * @param args - argument of command line
      */
-    public void startRace() {
-        System.out.println("*************************PRINT ALL OVERTAKING*************************\n");
-        printCarsAndOvertaking();
+    public static void main(String[] args) {
+        final double ROAD_LENGTH = 20;
+        final int FIRST_K_OVERTAKING = 4;
 
-        System.out.println("\n*************************PRINT FIRST K OVERTAKING*************************\n");
-        printCarsAndFirstNumberOvertaking();
+        SimulatorOvertaking simulatorOvertaking = new SimulatorOvertaking();
+        ArrayList<Car> cars = CarCreator.createCars(ROAD_LENGTH);
+
+        System.out.println("*************************PRINT ALL OVERTAKING*************************\n");
+        simulatorOvertaking.printCarsAndOvertaking(cars);
+
+        System.out.println("\n*************************PRINT FIRST " + FIRST_K_OVERTAKING
+                + " OVERTAKING*************************\n");
+        simulatorOvertaking.printCarsAndFirstNumberOvertaking(FIRST_K_OVERTAKING);
     }
 
     /**
      * This method print all overtaking.
      */
-    private void printCarsAndOvertaking() {
-        sortedCars = sortedCarsByDriveTime(cars);
-        fillingOvertakingList();
-
+    private void printCarsAndOvertaking(ArrayList<Car> cars) {
+        //sorted cars by drive time
+        Collections.sort(cars, new DriveTimeSorter());
+        fillingOvertakingList(cars);
 
         //values for cycle
         int jStart = 0;
         int jEnd = 0;
 
-        //print cars, overtaking cars and overtaking
+        //print cars, overtaking cars and number of overtaking
         for (int i = 0; i < cars.size(); i++) {
-            System.out.println("CAR " + cars.get(i).getCarModel() + " , WITH SPEED: " + cars.get(i).getSpeed()
-                    + " KM/H ,WITH STARTING POSITION: " + cars.get(i).getStartingPosition()
-                    + " KM ,WITH DRIVE TIME: " + new DecimalFormat("#0.000").format(cars.get(i).getDriveTime())
-                    + " HOUR OVERTAKING: \n");
+            System.out.println(cars.get(i).toString().toUpperCase()
+                    + " OVERTAKING: \n");
 
-            jEnd += overtaking.get(i);
+            jEnd += numbersOfOvertaking.get(i);
 
             for (int j = jStart; j < jEnd; j++) {
-                System.out.println("Car " + overtakingCars.get(j).getCarModel()
-                        + " , with speed: " + overtakingCars.get(j).getSpeed()
-                        + " km/h, with starting position: " + overtakingCars.get(j).getStartingPosition()
-                        + " km, with drive time: "
-                        + new DecimalFormat("#0.000").format(overtakingCars.get(j).getDriveTime()) + " hour");
+                System.out.println(overtakingCars.get(j).toString());
             }
 
-            jStart += overtaking.get(i);
+            jStart += numbersOfOvertaking.get(i);
 
-            System.out.println("\nNumber of overtaking: " + overtaking.get(i) + "\n");
+            System.out.println("\nNumber of overtaking: " + numbersOfOvertaking.get(i) + "\n");
         }
 
         int totalNumberOvertaking = 0;
-        for (Integer i : overtaking) {
+        for (Integer i : numbersOfOvertaking) {
             totalNumberOvertaking += i;
         }
 
@@ -94,43 +76,25 @@ public class SimulatorOvertaking {
     }
 
     /**
-     * This method sorted list with cars by drive time of cars.
-     *
-     * @return - sorted list with cars
-     */
-    private ArrayList<Car> sortedCarsByDriveTime(ArrayList<Car> cars) {
-        //sorted cars by drive time
-        for (int i = 0; i < cars.size(); i++) {
-            for (int j = 0; j < cars.size() - 1; j++) {
-                if (cars.get(j).getDriveTime() > cars.get(j + 1).getDriveTime()) {
-                    Car temp = cars.get(j);
-                    cars.set(j, cars.get(j + 1));
-                    cars.set(j + 1, temp);
-                }
-            }
-        }
-
-        return cars;
-    }
-
-    /**
      * This method filling list with overtaking.
      */
-    private void fillingOvertakingList() {
-        overtaking = new ArrayList<>();
+    private void fillingOvertakingList(ArrayList<Car> cars) {
+        numbersOfOvertaking = new ArrayList<>();
         overtakingCars = new ArrayList<>();
+        whoWasDefeatedCarList = new ArrayList<>();
 
-        //filling list with overtaking
+        //filling list with numbersOfOvertaking
         int overtakingCount = 0;
-        for (int i = 0; i < sortedCars.size(); i++) {
-            for (int j = i; j < sortedCars.size(); j++) {
-                if (sortedCars.get(i).getStartingPosition() < sortedCars.get(j).getStartingPosition() && i != j) {
+        for (int i = 0; i < cars.size(); i++) {
+            for (int j = i + 1; j < cars.size(); j++) {
+                if (cars.get(i).getStartingPosition() < cars.get(j).getStartingPosition()) {
                     overtakingCount++;
-                    overtakingCars.add(sortedCars.get(j));
+                    overtakingCars.add(cars.get(j));
+                    whoWasDefeatedCarList.add(cars.get(i));
                 }
             }
 
-            overtaking.add(overtakingCount);
+            numbersOfOvertaking.add(overtakingCount);
             overtakingCount = 0;
         }
     }
@@ -138,7 +102,48 @@ public class SimulatorOvertaking {
     /**
      * This method print first K overtaking.
      */
-    private void printCarsAndFirstNumberOvertaking() {
+    private void printCarsAndFirstNumberOvertaking(int firstKOvertaking) {
+        orderByDriveTimeToOvertaking();
 
+        //print first K overtaking
+        for (int i = 0; i < firstKOvertaking; i++) {
+            System.out.println((i + 1) + " OVERTAKING: " + overtakingCars.get(i).toString() + " \novertaking by: "
+                    + whoWasDefeatedCarList.get(i).toString().toUpperCase());
+        }
+    }
+
+    /**
+     * This method order lists with cars by drive time to overtaking
+     */
+    private void orderByDriveTimeToOvertaking() {
+        //list with drive time to overtaking
+        ArrayList<Double> driveTimeToOvertakingList = new ArrayList<>();
+
+        //filling list with drive time to overtaking
+        for (int i = 0; i < overtakingCars.size(); i++) {
+            double differenceSpeed = (whoWasDefeatedCarList.get(i).getSpeed() - overtakingCars.get(i).getSpeed());
+            double differenceDistance = (overtakingCars.get(i).getStartingPosition()
+                    - whoWasDefeatedCarList.get(i).getStartingPosition());
+
+            driveTimeToOvertakingList.add(differenceDistance / differenceSpeed);
+        }
+
+        //sorted list with numbers of overtaking and list of overtaking cars
+        for (int i = 0; i < overtakingCars.size(); i++) {
+            for (int j = 0; j < overtakingCars.size() - 1; j++) {
+                if (driveTimeToOvertakingList.get(j) > driveTimeToOvertakingList.get(j + 1)) {
+
+                    //bubble sort
+                    Car temp = overtakingCars.get(j);
+                    overtakingCars.set(j, overtakingCars.get(j + 1));
+                    overtakingCars.set(j + 1, temp);
+
+                    //bubble sort
+                    temp = whoWasDefeatedCarList.get(j);
+                    whoWasDefeatedCarList.set(j, whoWasDefeatedCarList.get(j + 1));
+                    whoWasDefeatedCarList.set(j + 1, temp);
+                }
+            }
+        }
     }
 }

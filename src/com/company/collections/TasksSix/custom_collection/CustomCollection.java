@@ -6,7 +6,7 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
      */
     private Object[] data;
     /**
-     * Size of custom collection
+     * Size of custom collection.
      */
     private int size;
 
@@ -14,7 +14,7 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
      * Default constructor create new data in custom collection if initial capacity not defined.
      */
     public CustomCollection() {
-        this.data = new Object[16];
+        data = new Object[0];
     }
 
     /**
@@ -28,7 +28,7 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
             throw new IllegalArgumentException("Illegal capacity: " + initialCapacity);
         }
 
-        this.data = new Object[initialCapacity];
+        this.data = new Object[0];
         this.size = initialCapacity;
     }
 
@@ -40,32 +40,24 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
      */
     @Override
     public boolean add(E element) {
-        int freeElementIndex = 0;
-        boolean result = false;
 
-        if (data[data.length - 1] == null) {
-            for (int i = 0; i < data.length; i++) {
-                if (data[i] == null) {
-                    freeElementIndex = i;
-                    break;
-                }
-            }
-            data[freeElementIndex] = element;
-            size = freeElementIndex + 1;
-            result = true;
+        if (data.length == 0) {
+            Object[] newData = new Object[1];
+
+            newData[0] = element;
+            data = newData;
+
+            size = 1;
         } else {
             Object[] newData = new Object[data.length + 1];
-
             System.arraycopy(data, 0, newData, 0, data.length);
 
             newData[newData.length - 1] = element;
-
             data = newData;
             size = data.length;
-            result = true;
         }
 
-        return result;
+        return true;
     }
 
     /**
@@ -76,56 +68,27 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
      */
     @Override
     public void add(int index, E element) {
-        //size of collection
-        int dataLength = 0;
+        if (index >= 0 && index < size) {
+            if (data.length == 0) {
+                Object[] newData = new Object[1];
 
-        //calculate size of collection
-        for (Object aData : data) {
-            if (aData != null) {
-                dataLength++;
+                newData[0] = element;
+                data = newData;
+
+                size = 1;
+            } else {
+                Object[] newData = new Object[data.length + 1];
+                System.arraycopy(data, 0, newData, 0, index);
+
+                newData[index] = element;
+
+                System.arraycopy(data, index + 1 - 1, newData, index + 1, data.length + 1 - (index + 1));
+
+                data = newData;
+
+                size = data.length;
             }
         }
-
-        //if size of custom collection equal zero
-        if (dataLength == 0) {
-            Object[] newData = new Object[dataLength + 1];
-            newData[0] = element;
-
-            data = newData;
-            size = data.length;
-
-            return;
-        }
-
-        //if length of index more size of custom collection
-        if (index > dataLength - 1) {
-            Object[] newData = new Object[dataLength + 1];
-            for (int i = 0; i < dataLength; i++) {
-                newData[i] = data[i];
-            }
-
-            newData[newData.length - 1] = element;
-
-            data = newData;
-            size = data.length;
-
-            return;
-        }
-
-        Object[] newData = new Object[dataLength + 1];
-
-        for (int i = 0; i < index; i++) {
-            newData[i] = data[i];
-        }
-
-        newData[index] = element;
-
-        for (int i = index + 1; i < newData.length; i++) {
-            newData[i] = data[i - 1];
-        }
-
-        data = newData;
-        size = data.length;
     }
 
     /**
@@ -152,54 +115,22 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
      */
     @Override
     public E remove(int index) {
+        if (data.length == 0) {
+            return null;
+        }
+
         //result
         E element = (E) data[index];
 
-        //size of collection
-        int dataLength = 0;
-
-        //return if size of collection equal zero
-        if (size == 0) {
-            return element;
-        }
-
-        //calculate size of collection
-        for (Object aData : data) {
-            if (aData != null) {
-                dataLength++;
-            }
-        }
-
-        //throw new exception if index of remove more size of collection
-        if (index >= dataLength) {
-            throw new ArrayIndexOutOfBoundsException("Output the bounds of collection");
-        }
-
-        //if index of remove equal zero
-        if (index == 0 && dataLength != 0) {
-            Object[] newData = new Object[dataLength - 1];
-
-            for (int i = 0; i < dataLength; i++) {
-                if (i != dataLength - 1) {
-                    newData[i] = data[i + 1];
-                }
-            }
-
-            data = newData;
-            size = newData.length;
-
-            return element;
-        }
-
-        //if index of remove not equal zero and less size of collection
-        if (index > 0 && index < dataLength) {
-            Object[] newData = new Object[dataLength - 1];
-
+        if (index >= 0 && index < size) {
+            Object[] newData = new Object[data.length - 1];
             System.arraycopy(data, 0, newData, 0, index);
-            System.arraycopy(data, index + 1, newData, index, dataLength - 1 - index);
+
+            System.arraycopy(data, index + 1, newData, index, data.length - 1 - index);
 
             data = newData;
-            size = newData.length;
+
+            size = data.length;
         }
 
         return element;
@@ -230,10 +161,7 @@ public class CustomCollection<E> implements com.company.collections.TasksSix.cus
      */
     @Override
     public void clear() {
-        for (int i = 0; i < data.length; i++) {
-            data[i] = null;
-        }
-
+        data = new Object[0];
         size = 0;
     }
 }

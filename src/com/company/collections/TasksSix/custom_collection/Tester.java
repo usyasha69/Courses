@@ -3,9 +3,18 @@ package com.company.collections.TasksSix.custom_collection;
 public class Tester {
 
     /**
+     * This method start the program.
+     *
+     * @param args - command line arguments
+     */
+    public static void main(String[] args) {
+        Tester.testCustomCollection();
+    }
+
+    /**
      * This method tested custom collection.
      */
-    public void testCustomCollection() {
+    public static void testCustomCollection() {
         System.out.println("Test of first default constructor: ");
         CustomCollection<Integer> firstCustomCollection = new CustomCollection<>();
 
@@ -17,7 +26,7 @@ public class Tester {
         System.out.println("Size of collection: " + secondCustomCollection.size());
 
         System.out.println("\nTest of method add(E element) and method get(index i) in first collection: ");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             firstCustomCollection.add(i);
         }
 
@@ -27,7 +36,7 @@ public class Tester {
         }
 
         System.out.println("\nTest of method add(E element) and method get(index i) in second collection: ");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             secondCustomCollection.add(i);
         }
 
@@ -39,7 +48,9 @@ public class Tester {
         System.out.println("\nTest of method add(int index, E element) in first collection: ");
         firstCustomCollection.add(0, 322);
         firstCustomCollection.add(3, 322);
+        firstCustomCollection.add(4, null);
         firstCustomCollection.add(5, 322);
+
 
         System.out.println("Size of first collection: " + firstCustomCollection.size() + "\n");
         for (int i = 0; i < firstCustomCollection.size(); i++) {
@@ -48,6 +59,7 @@ public class Tester {
 
         System.out.println("\nTest of method add(int index, E element) in second collection: ");
         secondCustomCollection.add(0, 322);
+        secondCustomCollection.add(1, null);
         secondCustomCollection.add(3, 322);
         secondCustomCollection.add(5, 322);
 
@@ -59,7 +71,8 @@ public class Tester {
         System.out.println("\nTest of method remove(int index) in first collection: ");
         firstCustomCollection.remove(0);
         firstCustomCollection.remove(2);
-        firstCustomCollection.remove(3);
+        firstCustomCollection.remove(2);
+        firstCustomCollection.remove(2);
 
         System.out.println("Size of first collection: " + firstCustomCollection.size() + "\n");
         for (int i = 0; i < firstCustomCollection.size(); i++) {
@@ -68,8 +81,9 @@ public class Tester {
 
         System.out.println("\nTest of method remove(int index) in second collection: ");
         secondCustomCollection.remove(0);
+        secondCustomCollection.remove(0);
+        secondCustomCollection.remove(1);
         secondCustomCollection.remove(2);
-        secondCustomCollection.remove(3);
 
         System.out.println("Size of second collection: " + secondCustomCollection.size() + "\n");
         for (int i = 0; i < secondCustomCollection.size(); i++) {

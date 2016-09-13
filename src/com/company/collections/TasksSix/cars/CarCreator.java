@@ -1,6 +1,7 @@
 package com.company.collections.TasksSix.cars;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CarCreator {
 
@@ -18,11 +19,13 @@ public class CarCreator {
         cars.add(new Car("Lada", 122.8, 21.4));
         cars.add(new Car("Lexus", 136.4, -32.2));
 
+        Iterator<Car> iterator = cars.iterator();
+
         //if begin position of car less road length, delete this car
-        for (int i  = 0; i < cars.size(); i++) {
-            if (cars.get(i).getStartingPosition() > roadLength || cars.get(i).getStartingPosition() < 0) {
-                cars.remove(cars.get(i));
-                i--;
+        while (iterator.hasNext()) {
+            Car car = iterator.next();
+            if (car.getStartingPosition() > roadLength || car.getStartingPosition() < 0) {
+                iterator.remove();
             }
         }
 
