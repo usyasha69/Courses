@@ -3,6 +3,7 @@ package com.company.collections.TaskEight.cafe;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Cafe {
@@ -66,7 +67,7 @@ public class Cafe {
             for (Map.Entry<Course, Double> entry : courseDoubleHashMap.entrySet()) {
                 System.out.println("Course: " + entry.getKey().getName() +
                         "; number: " + entry.getKey().getNumber() + "; cost: "
-                        + (entry.getValue() * entry.getKey().getNumber()) + "$");
+                        + new DecimalFormat("#0.00").format(entry.getValue() * entry.getKey().getNumber()) + "$");
             }
         }
 
