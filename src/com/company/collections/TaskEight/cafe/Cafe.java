@@ -160,10 +160,12 @@ public class Cafe {
                 }
 
                 //checked right number of course
-                foodCount = Integer.parseInt(reader.readLine());
                 for (; ; ) {
+                    foodCount = Integer.parseInt(reader.readLine());
                     if (foodCount >= 0) {
                         break;
+                    } else {
+                        System.out.println("Please, enter the correct number of food!   ");
                     }
                 }
             } catch (IOException e) {
