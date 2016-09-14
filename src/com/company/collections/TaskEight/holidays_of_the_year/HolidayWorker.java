@@ -149,7 +149,7 @@ public class HolidayWorker {
      *
      * @param holidays - map with holidays
      */
-    private static void printDayOffDays(HashMap<String, Holiday> holidays) {
+    private static HashMap<String, Holiday> printDayOffDays(HashMap<String, Holiday> holidays) {
         //result map with daysOff
         HashMap<String, Holiday> dayOffMap = new HashMap<>();
 
@@ -165,5 +165,7 @@ public class HolidayWorker {
         for (Map.Entry<String, Holiday> entry : dayOffMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
+
+        return dayOffMap;
     }
 }
