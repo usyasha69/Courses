@@ -80,21 +80,14 @@ public class Row implements Comparable<Row> {
 
     @Override
     public int compareTo(Row o) {
-        int result = Integer.parseInt(math.get("Math"))
-                - Integer.parseInt(o.getMath().get("Math"));
+        int mathResult = Integer.parseInt(math.get("Math")) - Integer.parseInt(o.getMath().get("Math"));
 
-        if (result != 0) {
-            return result;
-        }
-
-        result = Integer.parseInt(physics.get("Physics"))
+        int physicsResult = Integer.parseInt(physics.get("Physics"))
                 - Integer.parseInt(o.getPhysics().get("Physics"));
 
-        if (result != 0) {
-            return result;
-        }
-
-        return Integer.parseInt(geometry.get("Geometry"))
+        int geometryResult = Integer.parseInt(geometry.get("Geometry"))
                 - Integer.parseInt(o.getGeometry().get("Geometry"));
+
+        return mathResult + physicsResult + geometryResult;
     }
 }
