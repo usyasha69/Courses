@@ -10,99 +10,69 @@ public class TableCreator {
      *
      * @return - array list with rows
      */
-    public static ArrayList<Row> createTable() {
+    public static ArrayList<HashMap<String, String>> createTable() {
         //result
-        ArrayList<Row> progressTable = new ArrayList<>();
+        ArrayList<HashMap<String, String>> progressTable = new ArrayList<>();
 
         //create and filling first table row
-        HashMap<String, String> firstRowName = new HashMap<>();
-        firstRowName.put("Name", "Vasya");
+        HashMap<String, String> firstRow = new HashMap<>();
 
-        HashMap<String, String> firstRowMath = new HashMap<>();
-        firstRowMath.put("Math", "10");
+        firstRow.put("Name", "Vasya");
+        firstRow.put("Math", "10");
+        firstRow.put("Physics", "11");
+        firstRow.put("Geometry", "9");
 
-        HashMap<String, String> firstRowPhysics = new HashMap<>();
-        firstRowPhysics.put("Physics", "11");
-
-        HashMap<String, String> firstRowGeometry = new HashMap<>();
-        firstRowGeometry.put("Geometry", "9");
-
-        progressTable.add(new Row(firstRowName, firstRowMath, firstRowPhysics, firstRowGeometry));
+        progressTable.add(firstRow);
 
         //create and filling second table row
-        HashMap<String, String> secondRowName = new HashMap<>();
-        secondRowName.put("Name", "Petya");
+        HashMap<String, String> secondRow = new HashMap<>();
 
-        HashMap<String, String> secondRowMath = new HashMap<>();
-        secondRowMath.put("Math", "8");
+        secondRow.put("Name", "Petya");
+        secondRow.put("Math", "8");
+        secondRow.put("Physics", "12");
+        secondRow.put("Geometry", "7");
 
-        HashMap<String, String> secondRowPhysics = new HashMap<>();
-        secondRowPhysics.put("Physics", "12");
-
-        HashMap<String, String> secondRowGeometry = new HashMap<>();
-        secondRowGeometry.put("Geometry", "7");
-
-        progressTable.add(new Row(secondRowName, secondRowMath, secondRowPhysics, secondRowGeometry));
+        progressTable.add(secondRow);
 
         //create and filling third table row
-        HashMap<String, String> thirdRowName = new HashMap<>();
-        thirdRowName.put("Name", "Sanya");
+        HashMap<String, String> thirdRow = new HashMap<>();
 
-        HashMap<String, String> thirdRowMath = new HashMap<>();
-        thirdRowMath.put("Math", "12");
+        thirdRow.put("Name", "Sanya");
+        thirdRow.put("Math", "12");
+        thirdRow.put("Physics", "10");
+        thirdRow.put("Geometry", "9");
 
-        HashMap<String, String> thirdRowPhysics = new HashMap<>();
-        thirdRowPhysics.put("Physics", "10");
-
-        HashMap<String, String> thirdRowGeometry = new HashMap<>();
-        thirdRowGeometry.put("Geometry", "9");
-
-        progressTable.add(new Row(thirdRowName, thirdRowMath, thirdRowPhysics, thirdRowGeometry));
+        progressTable.add(thirdRow);
 
         //create and filling fourth table row
-        HashMap<String, String> fourthRowName = new HashMap<>();
-        fourthRowName.put("Name", "Dima");
+        HashMap<String, String> fourthRow = new HashMap<>();
 
-        HashMap<String, String> fourthRowMath = new HashMap<>();
-        fourthRowMath.put("Math", "12");
+        fourthRow.put("Name", "Dima");
+        fourthRow.put("Math", "12");
+        fourthRow.put("Physics", "9");
+        fourthRow.put("Geometry", "11");
 
-        HashMap<String, String> fourthRowPhysics = new HashMap<>();
-        fourthRowPhysics.put("Physics", "9");
-
-        HashMap<String, String> fourthRowGeometry = new HashMap<>();
-        fourthRowGeometry.put("Geometry", "11");
-
-        progressTable.add(new Row(fourthRowName, fourthRowMath, fourthRowPhysics, fourthRowGeometry));
+        progressTable.add(fourthRow);
 
         //create and filling fifth table row
-        HashMap<String, String> fifthRowName = new HashMap<>();
-        fifthRowName.put("Name", "Kolya");
+        HashMap<String, String> fifthRow = new HashMap<>();
 
-        HashMap<String, String> fifthRowMath = new HashMap<>();
-        fifthRowMath.put("Math", "9");
+        fifthRow.put("Name", "Kolya");
+        fifthRow.put("Math", "9");
+        fifthRow.put("Physics", "11");
+        fifthRow.put("Geometry", "9");
 
-        HashMap<String, String> fifthRowPhysics = new HashMap<>();
-        fifthRowPhysics.put("Physics", "11");
-
-        HashMap<String, String> fifthRowGeometry = new HashMap<>();
-        fifthRowGeometry.put("Geometry", "9");
-
-        progressTable.add(new Row(fifthRowName, fifthRowMath, fifthRowPhysics, fifthRowGeometry));
+        progressTable.add(fifthRow);
 
         //create and filling sixth table row
-        HashMap<String, String> sixthRowName = new HashMap<>();
-        sixthRowName.put("Name", "Danya");
+        HashMap<String, String> sixthRow = new HashMap<>();
 
-        HashMap<String, String> sixthRowMath = new HashMap<>();
-        sixthRowMath.put("Math", "10");
+        sixthRow.put("Name", "Danya");
+        sixthRow.put("Math", "10");
+        sixthRow.put("Physics", "8");
+        sixthRow.put("Geometry", "12");
 
-        HashMap<String, String> sixthRowPhysics = new HashMap<>();
-        sixthRowPhysics.put("Physics", "8");
-
-        HashMap<String, String> SixthRowGeometry = new HashMap<>();
-        SixthRowGeometry.put("Geometry", "12");
-
-        progressTable.add(new Row(sixthRowName, sixthRowMath, sixthRowPhysics, SixthRowGeometry));
+        progressTable.add(sixthRow);
 
         return progressTable;
     }

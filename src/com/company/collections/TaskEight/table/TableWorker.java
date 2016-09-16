@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class TableWorker {
@@ -15,7 +16,7 @@ public class TableWorker {
      * @param args - command line arguments
      */
     public static void main(String[] args) {
-        ArrayList<Row> progressTable = TableCreator.createTable();
+        ArrayList<HashMap<String, String>> progressTable = TableCreator.createTable();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -76,7 +77,7 @@ public class TableWorker {
             case "6":
                 System.out.println("\nTABLE SORTED BY BEST RATING");
                 //sorted and print table by best rating
-                Collections.sort(progressTable);
+                Collections.sort(progressTable, new BestRatingSorter());
                 printProgressTable(progressTable);
                 break;
             case "7":
@@ -111,9 +112,10 @@ public class TableWorker {
     /**
      * @param progressTable - list with table
      */
-    private static void printProgressTable(ArrayList<Row> progressTable) {
-        for (Row row : progressTable) {
-            System.out.println(row.toString());
+    private static void printProgressTable(ArrayList<HashMap<String, String>> progressTable) {
+
+        for (HashMap<String, String> hashMap : progressTable) {
+            System.out.println(rowToString(hashMap));
         }
     }
 
@@ -123,15 +125,16 @@ public class TableWorker {
      * @param progressTable  - progress table
      * @param numberOfTables - number of pages
      */
-    private static ArrayList<ArrayList<Row>> separationTable(ArrayList<Row> progressTable, int numberOfTables) {
+    private static ArrayList<ArrayList<HashMap<String, String>>> separationTable(
+            ArrayList<HashMap<String, String>> progressTable, int numberOfTables) {
         //result
-        ArrayList<ArrayList<Row>> pages = new ArrayList<>();
+        ArrayList<ArrayList<HashMap<String, String>>> pages = new ArrayList<>();
 
         int pagesNumber = progressTable.size() / numberOfTables;
         System.out.println(pagesNumber);
 
         for (int i = 0; i < numberOfTables; i++) {
-            ArrayList<Row> page = new ArrayList<>();
+            ArrayList<HashMap<String, String>> page = new ArrayList<>();
             //filling page
             for (int j = 0; j < pagesNumber; j++) {
                 page.add(progressTable.get(j));
@@ -154,15 +157,29 @@ public class TableWorker {
      *
      * @param separateTable - separate progress table
      */
-    private static void printSeparateProgressTable(ArrayList<ArrayList<Row>> separateTable) {
+    private static void printSeparateProgressTable(ArrayList<ArrayList<HashMap<String, String>>> separateTable) {
         for (int i = 0; i < separateTable.size(); i++) {
             System.out.println((i + 1) + " page: ");
 
-            Iterator<Row> iterator = separateTable.get(i).iterator();
+            Iterator<HashMap<String, String>> iterator = separateTable.get(i).iterator();
 
             while (iterator.hasNext()) {
-                System.out.println(iterator.next().toString());
+                HashMap<String, String> row = iterator.next();
+                System.out.println(rowToString(row));
             }
         }
+    }
+
+    /**
+     * This method convert map with row to String format.
+     *
+     * @param row - map with row
+     * @return - row to String
+     */
+    private static String rowToString(HashMap<String, String> row) {
+
+        return "Name: " + row.get("Name") + "; Math: " + row.get("Math")
+                + "; Physics: " + row.get("Physics") + "; Geometry: "
+                + row.get("Geometry");
     }
 }
