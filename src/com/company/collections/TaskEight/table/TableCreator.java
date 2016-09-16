@@ -44,7 +44,7 @@ public class TableCreator {
 
         progressTable.add(new Row(secondRowName, secondRowMath, secondRowPhysics, secondRowGeometry));
 
-        //create and filling first table row
+        //create and filling third table row
         HashMap<String, String> thirdRowName = new HashMap<>();
         thirdRowName.put("Name", "Sanya");
 
@@ -59,7 +59,7 @@ public class TableCreator {
 
         progressTable.add(new Row(thirdRowName, thirdRowMath, thirdRowPhysics, thirdRowGeometry));
 
-        //create and filling first table row
+        //create and filling fourth table row
         HashMap<String, String> fourthRowName = new HashMap<>();
         fourthRowName.put("Name", "Dima");
 
@@ -74,7 +74,7 @@ public class TableCreator {
 
         progressTable.add(new Row(fourthRowName, fourthRowMath, fourthRowPhysics, fourthRowGeometry));
 
-        //create and filling first table row
+        //create and filling fifth table row
         HashMap<String, String> fifthRowName = new HashMap<>();
         fifthRowName.put("Name", "Kolya");
 
@@ -88,6 +88,21 @@ public class TableCreator {
         fifthRowGeometry.put("Geometry", "9");
 
         progressTable.add(new Row(fifthRowName, fifthRowMath, fifthRowPhysics, fifthRowGeometry));
+
+        //create and filling sixth table row
+        HashMap<String, String> sixthRowName = new HashMap<>();
+        sixthRowName.put("Name", "Danya");
+
+        HashMap<String, String> sixthRowMath = new HashMap<>();
+        sixthRowMath.put("Math", "10");
+
+        HashMap<String, String> sixthRowPhysics = new HashMap<>();
+        sixthRowPhysics.put("Physics", "8");
+
+        HashMap<String, String> SixthRowGeometry = new HashMap<>();
+        SixthRowGeometry.put("Geometry", "12");
+
+        progressTable.add(new Row(sixthRowName, sixthRowMath, sixthRowPhysics, SixthRowGeometry));
 
         return progressTable;
     }
