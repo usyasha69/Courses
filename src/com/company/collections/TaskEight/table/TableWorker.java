@@ -1,4 +1,4 @@
-package com.company.collections.TaskEight.Table;
+package com.company.collections.TaskEight.table;
 
 import java.util.ArrayList;
 import java.util.Collections;
