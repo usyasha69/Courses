@@ -4,6 +4,13 @@ import java.util.HashMap;
 
 public class WeatherVocabulary {
 
+    /**
+     * This method translate weather to enter language.
+     *
+     * @param weather  - weather
+     * @param language - language
+     * @return - translate weather
+     */
     public static Weather translateWeather(Weather weather, String language) {
         //result
         Weather resultWeather = new Weather(weather);
