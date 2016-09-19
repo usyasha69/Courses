@@ -29,6 +29,7 @@ public class HumanThread extends Thread {
 
                         //add transaction to total list
                         Accountant.transactions.add(transaction);
+                        Accountant.calculateNextProfit(transaction);
 
                         System.out.println("\n" + transaction.toString());
                     } else {
@@ -44,6 +45,7 @@ public class HumanThread extends Thread {
 
                         //add transaction to total list
                         Accountant.transactions.add(transaction);
+                        Accountant.calculateNextProfit(transaction);
 
                         System.out.println("\n" + transaction.toString());
                     } else {
@@ -62,6 +64,7 @@ public class HumanThread extends Thread {
 
                         //add transaction to total list
                         Accountant.transactions.add(transaction);
+                        Accountant.calculateNextProfit(transaction);
 
                         System.out.println("\n" + transaction.toString());
                     } else {
@@ -76,6 +79,7 @@ public class HumanThread extends Thread {
 
                         //add transaction to total list
                         Accountant.transactions.add(transaction);
+                        Accountant.calculateNextProfit(transaction);
 
                         System.out.println("\n" + transaction.toString());
                     } else {

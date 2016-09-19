@@ -94,15 +94,6 @@ public class ExchangeOffice {
                     humanThread = new HumanThread(transaction);
                     humanThread.setName(personName);
                     humanThread.start();
-
-                    try {
-                        if (humanThread.isAlive()) {
-                            humanThread.join();
-                            Accountant.calculateNextProfit(transaction);
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                 }
                 if (j == 4) {
                     try {
