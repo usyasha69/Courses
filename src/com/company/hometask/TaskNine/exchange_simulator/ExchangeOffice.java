@@ -45,6 +45,9 @@ public class ExchangeOffice {
                 + "; sale - " + DOLLAR_SALE_COURSE + "\nEUR: buy - " + EURO_BUY_COURSE
                 + "; sale - " + EURO_SALE_COURSE);
 
+        //print start balance
+        Accountant.printStartBalance();
+
         //count of simulation
         final int SIMULATION_COUNT = 5;
 
@@ -122,6 +125,8 @@ public class ExchangeOffice {
         Accountant.printTotalProfit();
         //print all transaction and transaction with max profit
         Accountant.printTransaction();
+        //print final balance
+        Accountant.printFinalBalance();
     }
 
     /**
@@ -131,7 +136,7 @@ public class ExchangeOffice {
      */
     private static byte[] generateRandomArray() {
         //max number of client
-        final int CLIENT_NUMBER = 5;
+        final int CLIENT_NUMBER = 10;
 
         byte[] randomArray = new byte[CLIENT_NUMBER];
 
@@ -148,7 +153,7 @@ public class ExchangeOffice {
      * @return - random sum of transaction
      */
     private static double generateRandomSum() {
-        return (int) (Math.random() * 500);
+        return (int) (Math.random() * 7000);
     }
 
     /**

@@ -93,9 +93,9 @@ public class Accountant {
                 + " Cycle UAH profit: " + df.format(nextHryvniaProfit - totalHryvniaProfit));
 
         //update total profit
-        totalDollarProfit += nextDollarProfit;
-        totalEuroProfit += nextEuroProfit;
-        totalHryvniaProfit += nextHryvniaProfit;
+        totalDollarProfit = nextDollarProfit;
+        totalEuroProfit = nextEuroProfit;
+        totalHryvniaProfit = nextHryvniaProfit;
     }
 
     /**
@@ -117,7 +117,9 @@ public class Accountant {
             System.out.println(transaction.toString());
         }
 
-        //System.out.println("Transaction with max profit: " + foundMaxTrade().toString());
+        System.out.println("\nTransaction with max USD profit: " + foundMaxTrade("Dollar").toString()
+                + "\nTransaction with max EUR profit: " + foundMaxTrade("Euro").toString()
+                + "\nTransaction with max UAH profit: " + foundMaxTrade("Hryvnia").toString());
     }
 
     /**
@@ -125,16 +127,56 @@ public class Accountant {
      *
      * @return - transaction with max profit
      */
-    private static Transaction foundMaxTrade() {
+    private static Transaction foundMaxTrade(String currency) {
         //result
         Transaction maxTransaction = transactions.get(0);
 
-        for (int i = 0; i < transactions.size() - 1; i++) {
-//            if (transactions.get(i).getProfit() > transactions.get(i + 1).getProfit()) {
-//                maxTransaction = transactions.get(i);
-//            }
+        if (currency.equals("Dollar")) {
+            for (int i = 0; i < transactions.size() - 1; i++) {
+                if (transactions.get(i).getDollarProfit() > transactions.get(i + 1).getDollarProfit()) {
+                    maxTransaction = transactions.get(i);
+                }
+            }
         }
 
+        if (currency.equals("Euro")) {
+            for (int i = 0; i < transactions.size() - 1; i++) {
+                if (transactions.get(i).getEuroProfit() > transactions.get(i + 1).getEuroProfit()) {
+                    maxTransaction = transactions.get(i);
+                }
+            }
+        }
+
+        if (currency.equals("Hryvnia")) {
+            for (int i = 0; i < transactions.size() - 1; i++) {
+                if (transactions.get(i).getHryvniaProfit() > transactions.get(i + 1).getHryvniaProfit()) {
+                    maxTransaction = transactions.get(i);
+                }
+            }
+        }
+
+
         return maxTransaction;
+    }
+
+    /**
+     * This method print star balance of exchange office.
+     */
+    public static void printStartBalance() {
+        DecimalFormat df = new DecimalFormat("#0.0");
+
+        System.out.println("\nStart balance: " + "\nUSD: " + df.format(ExchangeOffice.dollarBalance)
+                + "\nEUR: " + df.format(ExchangeOffice.euroBalance) + "\nUAH: "
+                + df.format(ExchangeOffice.hryvniaBalance));
+    }
+    /**
+     * This method print final balance of exchange office.
+     */
+    public static void printFinalBalance() {
+        DecimalFormat df = new DecimalFormat("#0.0");
+
+        System.out.println("\nFinal balance: " + "\nUSD: " + df.format(ExchangeOffice.dollarBalance)
+                + "\nEUR: " + df.format(ExchangeOffice.euroBalance) + "\nUAH: "
+                + df.format(ExchangeOffice.hryvniaBalance));
     }
 }
