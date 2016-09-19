@@ -91,9 +91,6 @@ public class ExchangeOffice {
                     Transaction transaction = new Transaction(personName, sum, operationType
                             , currency, dollarProfit, euroProfit, hryvniaProfit);
 
-                    //add transaction to total list
-                    Accountant.transactions.add(transaction);
-
                     humanThread = new HumanThread(transaction);
                     humanThread.setName(personName);
                     humanThread.start();
@@ -153,7 +150,7 @@ public class ExchangeOffice {
      * @return - random sum of transaction
      */
     private static double generateRandomSum() {
-        return (int) (Math.random() * 7000);
+        return (int) (Math.random() * 5000);
     }
 
     /**
