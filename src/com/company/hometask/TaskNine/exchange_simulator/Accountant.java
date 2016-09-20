@@ -28,31 +28,31 @@ public class Accountant {
      * @param currency      - currency of transaction
      * @return - profit of transaction
      */
-    public static double calculateTransactionProfit(double sum, String operationType
+    public double calculateTransactionProfit(double sum, String operationType
             , String currency) {
         //result
         double result = 0.0;
 
         //buy currency by exchange office
-        if (operationType.equals("Buy")) {
-            if (currency.equals("Dollar")) {
+        if (operationType.equals(ExchangeOffice.BUY_OPERATION_TYPE)) {
+            if (currency.equals(ExchangeOffice.DOLLAR_CURRENCY)) {
                 result += (sum * (ExchangeOffice.DOLLAR_SALE_COURSE - ExchangeOffice.DOLLAR_BUY_COURSE))
                         / ExchangeOffice.DOLLAR_BUY_COURSE;
             }
 
-            if (currency.equals("Euro")) {
+            if (currency.equals(ExchangeOffice.EURO_CURRENCY)) {
                 result += (sum * (ExchangeOffice.EURO_SALE_COURSE - ExchangeOffice.EURO_BUY_COURSE))
                         / ExchangeOffice.DOLLAR_BUY_COURSE;
             }
         }
 
         //sale currency by exchange office
-        if (operationType.equals("Sale")) {
-            if (currency.equals("Dollar")) {
+        if (operationType.equals(ExchangeOffice.SALE_OPERATION_TYPE)) {
+            if (currency.equals(ExchangeOffice.DOLLAR_CURRENCY)) {
                 result += (sum * (ExchangeOffice.DOLLAR_SALE_COURSE - ExchangeOffice.DOLLAR_BUY_COURSE));
             }
 
-            if (currency.equals("Euro")) {
+            if (currency.equals(ExchangeOffice.EURO_CURRENCY)) {
                 result += (sum * (ExchangeOffice.EURO_SALE_COURSE - ExchangeOffice.EURO_BUY_COURSE));
             }
 
@@ -65,7 +65,7 @@ public class Accountant {
      *
      * @param transaction - transaction
      */
-    public static void calculateNextProfit(Transaction transaction) {
+    public void calculateNextProfit(Transaction transaction) {
         //calculate next dollar profit
         if (transaction.getDollarProfit() != 0.0) {
             nextDollarProfit += transaction.getDollarProfit();
@@ -85,7 +85,7 @@ public class Accountant {
     /**
      * This method print profit by one cycle and update total profit.
      */
-    public static void calculateAndPrintCycleProfit(int i) {
+    public void calculateAndPrintCycleProfit(int i) {
         DecimalFormat df = new DecimalFormat("#0.0");
         //print profit by 1 cycle
         System.out.println("\n" + (i + 1) + " Cycle USD profit: " + df.format(nextDollarProfit - totalDollarProfit)
@@ -101,7 +101,7 @@ public class Accountant {
     /**
      * This method print total profit of exchange office by all time.
      */
-    public static void printTotalProfit() {
+    public void printTotalProfit() {
         DecimalFormat df = new DecimalFormat("#0.0");
         System.out.println("\nTotal USD profit: " + df.format(totalDollarProfit) + "\nTotal EUR profit: "
                 + df.format(totalEuroProfit) + "\nTotal UAH profit: " + df.format(totalHryvniaProfit));
@@ -111,15 +111,16 @@ public class Accountant {
      * This method print all transaction in exchange office and print
      * transaction with max profit for exchange office.
      */
-    public static void printTransaction() {
+    public void printTransaction() {
         System.out.println("\nAll transaction: \n");
         for (Transaction transaction : transactions) {
             System.out.println(transaction.toString());
         }
 
-        System.out.println("\nTransaction with max USD profit: " + foundMaxTrade("Dollar").toString()
-                + "\nTransaction with max EUR profit: " + foundMaxTrade("Euro").toString()
-                + "\nTransaction with max UAH profit: " + foundMaxTrade("Hryvnia").toString());
+        System.out.println("\nTransaction with max USD profit: "
+                + foundMaxTrade(ExchangeOffice.DOLLAR_CURRENCY).toString() + "\nTransaction with max EUR profit: "
+                + foundMaxTrade(ExchangeOffice.EURO_CURRENCY).toString() + "\nTransaction with max UAH profit: "
+                + foundMaxTrade(ExchangeOffice.HRYVNIA_CURRENCY).toString());
     }
 
     /**
@@ -127,11 +128,11 @@ public class Accountant {
      *
      * @return - transaction with max profit
      */
-    private static Transaction foundMaxTrade(String currency) {
+    private Transaction foundMaxTrade(String currency) {
         //result
         Transaction maxTransaction = transactions.get(0);
 
-        if (currency.equals("Dollar")) {
+        if (currency.equals(ExchangeOffice.DOLLAR_CURRENCY)) {
             for (int i = 0; i < transactions.size() - 1; i++) {
                 if (transactions.get(i).getDollarProfit() > transactions.get(i + 1).getDollarProfit()) {
                     maxTransaction = transactions.get(i);
@@ -139,7 +140,7 @@ public class Accountant {
             }
         }
 
-        if (currency.equals("Euro")) {
+        if (currency.equals(ExchangeOffice.EURO_CURRENCY)) {
             for (int i = 0; i < transactions.size() - 1; i++) {
                 if (transactions.get(i).getEuroProfit() > transactions.get(i + 1).getEuroProfit()) {
                     maxTransaction = transactions.get(i);
@@ -147,7 +148,7 @@ public class Accountant {
             }
         }
 
-        if (currency.equals("Hryvnia")) {
+        if (currency.equals(ExchangeOffice.HRYVNIA_CURRENCY)) {
             for (int i = 0; i < transactions.size() - 1; i++) {
                 if (transactions.get(i).getHryvniaProfit() > transactions.get(i + 1).getHryvniaProfit()) {
                     maxTransaction = transactions.get(i);
@@ -162,7 +163,7 @@ public class Accountant {
     /**
      * This method print star balance of exchange office.
      */
-    public static void printStartBalance() {
+    public void printStartBalance() {
         DecimalFormat df = new DecimalFormat("#0.0");
 
         System.out.println("\nStart balance: " + "\nUSD: " + df.format(ExchangeOffice.dollarBalance)
@@ -172,7 +173,7 @@ public class Accountant {
     /**
      * This method print final balance of exchange office.
      */
-    public static void printFinalBalance() {
+    public void printFinalBalance() {
         DecimalFormat df = new DecimalFormat("#0.0");
 
         System.out.println("\nFinal balance: " + "\nUSD: " + df.format(ExchangeOffice.dollarBalance)

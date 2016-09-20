@@ -10,6 +10,18 @@ public class ExchangeOffice {
     public static final double EURO_SALE_COURSE = 29.46;
 
     /**
+     * Operation types.
+     */
+    public static final String BUY_OPERATION_TYPE = "Buy";
+    public static final String SALE_OPERATION_TYPE = "Sale";
+
+    /**
+     * Name of currency.
+     */
+    public static final String DOLLAR_CURRENCY = "Dollar";
+    public static final String EURO_CURRENCY = "Euro";
+    public static final String HRYVNIA_CURRENCY = "Hryvnia";
+    /**
      * Balance of currency in exchange office.
      */
     public static double dollarBalance;
@@ -45,8 +57,10 @@ public class ExchangeOffice {
                 + "; sale - " + DOLLAR_SALE_COURSE + "\nEUR: buy - " + EURO_BUY_COURSE
                 + "; sale - " + EURO_SALE_COURSE);
 
+        Accountant accountant = new Accountant();
+
         //print start balance
-        Accountant.printStartBalance();
+        accountant.printStartBalance();
 
         //count of simulation
         final int SIMULATION_COUNT = 5;
@@ -71,27 +85,27 @@ public class ExchangeOffice {
                     double hryvniaProfit = 0;
 
                     //calculate profit for one transaction
-                    if (currency.equals("Dollar")) {
-                        if (operationType.equals("Buy")) {
-                            dollarProfit = Accountant.calculateTransactionProfit(sum, operationType, currency);
+                    if (currency.equals(DOLLAR_CURRENCY)) {
+                        if (operationType.equals(BUY_OPERATION_TYPE)) {
+                            dollarProfit = accountant.calculateTransactionProfit(sum, operationType, currency);
                         }
-                        if (operationType.equals("Sale")) {
-                            hryvniaProfit = Accountant.calculateTransactionProfit(sum, operationType, currency);
+                        if (operationType.equals(SALE_OPERATION_TYPE)) {
+                            hryvniaProfit = accountant.calculateTransactionProfit(sum, operationType, currency);
                         }
                     }
-                    if (currency.equals("Euro")) {
-                        if (operationType.equals("Buy")) {
-                            euroProfit = Accountant.calculateTransactionProfit(sum, operationType, currency);
+                    if (currency.equals(EURO_CURRENCY)) {
+                        if (operationType.equals(BUY_OPERATION_TYPE)) {
+                            euroProfit = accountant.calculateTransactionProfit(sum, operationType, currency);
                         }
-                        if (operationType.equals("Sale")) {
-                            hryvniaProfit = Accountant.calculateTransactionProfit(sum, operationType, currency);
+                        if (operationType.equals(SALE_OPERATION_TYPE)) {
+                            hryvniaProfit = accountant.calculateTransactionProfit(sum, operationType, currency);
                         }
                     }
 
                     Transaction transaction = new Transaction(personName, sum, operationType
                             , currency, dollarProfit, euroProfit, hryvniaProfit);
 
-                    humanThread = new HumanThread(transaction);
+                    humanThread = new HumanThread(transaction, accountant);
                     humanThread.setName(personName);
                     humanThread.start();
                 }
@@ -104,17 +118,17 @@ public class ExchangeOffice {
                         e.printStackTrace();
                     }
                     //calculate profit by one cycle
-                    Accountant.calculateAndPrintCycleProfit(i);
+                    accountant.calculateAndPrintCycleProfit(i);
                 }
             }
         }
 
         //print total profit
-        Accountant.printTotalProfit();
+        accountant.printTotalProfit();
         //print all transaction and transaction with max profit
-        Accountant.printTransaction();
+        accountant.printTransaction();
         //print final balance
-        Accountant.printFinalBalance();
+        accountant.printFinalBalance();
     }
 
     /**
@@ -164,9 +178,9 @@ public class ExchangeOffice {
         //generate result
         for (byte b : randomArray) {
             if (b == 0) {
-                result = "Buy";
+                result = BUY_OPERATION_TYPE;
             } else {
-                result = "Sale";
+                result = SALE_OPERATION_TYPE;
             }
         }
 
@@ -193,9 +207,9 @@ public class ExchangeOffice {
         //generate result
         for (byte b : randomArray) {
             if (b == 0) {
-                result = "Dollar";
+                result = DOLLAR_CURRENCY;
             } else {
-                result = "Euro";
+                result = EURO_CURRENCY;
             }
         }
 
